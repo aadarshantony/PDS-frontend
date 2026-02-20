@@ -1,21 +1,20 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LandingPage from './pages/LandingPage';
-import CitizenPortal from './pages/CitizenPortal';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AdminDashboard from './pages/AdminDashboard';
-import RationShopDealer from './pages/RationShopDealer'
-import WarehousePanel from './pages/WarehousePanel'
+import CitizenPortal from './pages/CitizenPortal';
+import RationShopDealer from './pages/RationShopDealer';
+import WarehousePanel from './pages/WarehousePanel';
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LandingPage />} />
+        {/* Set one of these as the default index so you see something! */}
+        <Route index element={<WarehousePanel />} /> 
         <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/warehouse" element={<WarehousePanel />} />
-        <Route path="/dealer" element={<RationShopDealer />} />
         <Route path="/citizen" element={<CitizenPortal />} />
+        <Route path="/dealer" element={<RationShopDealer />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 

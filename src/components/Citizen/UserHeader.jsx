@@ -1,32 +1,33 @@
 import React from 'react';
-import { Bell, Search, UserCircle } from 'lucide-react';
+import { UserCircle, CreditCard, Users } from 'lucide-react';
 
 const UserHeader = ({ name, cardId, category, familyCount }) => (
-  <header className="bg-white border-b border-slate-200 px-8 py-4 flex items-center justify-between sticky top-0 z-40">
-    <div className="flex items-center gap-4">
-      <div className="hidden md:flex relative">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-        <input 
-          type="text" 
-          placeholder="Search for items, shops, or alerts..." 
-          className="pl-10 pr-4 py-2 bg-slate-100 rounded-xl text-sm w-80 focus:ring-2 focus:ring-emerald-500 outline-none transition-all"
-        />
-      </div>
-    </div>
-
-    <div className="flex items-center gap-6">
-      <button className="relative p-2 text-slate-500 hover:bg-slate-100 rounded-full transition-colors">
-        <Bell size={22} />
-        <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full border-2 border-white"></span>
-      </button>
-      
-      <div className="flex items-center gap-3 border-l pl-6 border-slate-200">
-        <div className="text-right hidden sm:block">
-          <p className="text-sm font-bold text-slate-800">{name}</p>
-          <p className="text-[10px] text-emerald-600 font-black uppercase tracking-widest">{category}</p>
+  <header className="bg-white border-b border-slate-100 p-8 md:p-10">
+    <div className="max-w-[1400px] mx-auto flex flex-col md:flex-row md:items-center justify-between gap-6">
+      <div className="flex items-center gap-6">
+        <div className="w-20 h-20 bg-emerald-100 rounded-[30px] flex items-center justify-center text-emerald-600">
+          <UserCircle size={48} strokeWidth={1.5} />
         </div>
-        <div className="w-10 h-10 bg-emerald-500 rounded-xl flex items-center justify-center text-white font-bold shadow-lg shadow-emerald-200">
-          {name.charAt(0)}
+        <div>
+          <h1 className="text-3xl font-black text-slate-900 tracking-tight">Namaste, {name}</h1>
+          <div className="flex flex-wrap gap-3 mt-2">
+            <span className="flex items-center gap-1.5 px-3 py-1 bg-slate-100 text-slate-600 rounded-full text-xs font-bold uppercase tracking-wider">
+              <CreditCard size={14} /> {cardId}
+            </span>
+            <span className="flex items-center gap-1.5 px-3 py-1 bg-emerald-100 text-emerald-700 rounded-full text-xs font-bold uppercase tracking-wider">
+              {category}
+            </span>
+          </div>
+        </div>
+      </div>
+      
+      <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-3xl border border-slate-100">
+        <div className="bg-white p-2 rounded-xl shadow-sm text-slate-400">
+          <Users size={20} />
+        </div>
+        <div>
+          <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Family Members</p>
+          <p className="text-lg font-black text-slate-800">{familyCount} Registered</p>
         </div>
       </div>
     </div>

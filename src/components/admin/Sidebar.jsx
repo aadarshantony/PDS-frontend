@@ -1,9 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom'; // Add this for navigation
 import { LayoutDashboard, Warehouse, Truck, ShoppingCart, BarChart3, MessageSquare, Bell, Users, LogOut } from 'lucide-react';
 
-const Sidebar = () => {
+const Sidebar = ({ activeTab, setActiveTab }) => {
+  const navigate = useNavigate();
+
   const menuItems = [
-    { icon: LayoutDashboard, label: 'Overview', active: true },
+    { icon: LayoutDashboard, label: 'Overview' },
     { icon: Warehouse, label: 'Warehouses' },
     { icon: Truck, label: 'Shipments' },
     { icon: ShoppingCart, label: 'Ration Shops' },
@@ -14,7 +17,7 @@ const Sidebar = () => {
   ];
 
   return (
-    <aside className="w-64 bg-[#0f172a] text-slate-300 min-h-screen p-4 flex flex-col">
+    <aside className="w-64 bg-[#0f172a] text-slate-300 min-h-screen p-4 flex flex-col sticky top-0 h-screen">
       <div className="flex items-center gap-2 px-2 mb-8">
         <div className="bg-teal-500 p-1 rounded">
           <Warehouse size={20} className="text-white" />
@@ -26,8 +29,11 @@ const Sidebar = () => {
         {menuItems.map((item) => (
           <button
             key={item.label}
-            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-colors ${
-              item.active ? 'bg-teal-600/20 text-teal-400 border-l-4 border-teal-500' : 'hover:bg-slate-800'
+            onClick={() => setActiveTab && setActiveTab(item.label)} // Connect to Dashboard state
+            className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm transition-all ${
+              activeTab === item.label 
+                ? 'bg-teal-600/20 text-teal-400 border-l-4 border-teal-500' 
+                : 'hover:bg-slate-800'
             }`}
           >
             <item.icon size={18} />
@@ -36,7 +42,11 @@ const Sidebar = () => {
         ))}
       </nav>
 
-      <button className="flex items-center gap-3 px-3 py-4 text-sm hover:text-white border-t border-slate-800">
+      {/* Actual functional Logout/Switch button */}
+      <button 
+        onClick={() => navigate('/')} 
+        className="flex items-center gap-3 px-3 py-4 text-sm hover:text-white border-t border-slate-800 transition-colors"
+      >
         <LogOut size={18} />
         Switch Role
       </button>
